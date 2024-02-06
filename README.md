@@ -1,0 +1,1 @@
+# StrongMind Jr. Full Stack Application
