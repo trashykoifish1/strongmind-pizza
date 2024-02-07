@@ -23,75 +23,28 @@
                                     <tr id="topping-{{ topping.id }}" style="vertical-align: middle;">
                                       <td>{{ topping.name }}</td>
                                       <td style="text-align: center;">
-                                        <a class="btn btn-outline-dark me-1">
+                                        <a class="btn btn-outline-dark me-1" href="{% url 'update_topping' topping.id %}">
                                             <i class="fa-solid fa-file-pen fa-lg"></i> Update
                                           </a>
-                                        <button class="btn btn-outline-dark me-1">
+                                        <button class="btn btn-outline-dark me-1" data-bs-toggle="modal" data-bs-target="#delete{{topping.id}}">
                                             <i class="fa-solid fa-trash-can fa-lg"></i> Delete
                                         </button>
-                                        {% comment %}
-                                          <button type="button" class="btn btn-outline-dark me-1" href="{% url 'view_expense' expense.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{expense.id}}">
-                                            <i class="fa-solid fa-circle-info fa-lg"></i>
-                                          </button>
-                                          <!-- Modal - View Expense -->
-                                          <div class="modal" id="myModal{{expense.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                        <div class="modal" id="delete{{topping.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
                                                   <h5 class="modal-title">
-                                                    Expense: {{ expense.name }}
-                                                  </h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true"></span>
-                                                  </button>
-                                                </div>
-                                                <div class="modal-body" style="text-align: left;">
-                                                  <ul class="list-unstyled">
-                                                    <li>Status: 
-                                                      <strong>
-                                                      {% if expense.paid %}
-                                                      Paid
-                                                      {% else %}
-                                                      Not Paid
-                                                      {% endif %}
-                                                      </strong>
-                                                    </li>
-                                                    <li>Amount: <strong>${{ expense.amount }}</strong></li>
-                                                    <li>Payer: <strong>{{ expense.payer }}</strong></li>
-                                                    <li>Due Date: <strong>{{ expense.date_due|date:'Y-m-d' }}</strong></li>
-                                                  </ul>
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <a class="btn btn-outline-dark me-1" href="{% url 'edit' expense.id %}">
-                                            <i class="fa-solid fa-file-pen fa-lg"></i>
-                                          </a>
-
-                                          <button class="btn btn-outline-dark me-1" data-bs-toggle="modal" data-bs-target="#delete{{expense.id}}">
-                                            <i class="fa-solid fa-trash-can fa-lg"></i>
-                                          </button>
-
-                                          <!-- Modal - Delete Expense -->
-                                          <div class="modal" id="delete{{expense.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title">
-                                                    Expense: {{ expense.name }}
+                                                    Deleting {{ topping.name }}
                                                   </h5>
                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true"></span>
                                                   </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                  <p>Are you sure you want to delete this expense?</p>
+                                                  <p>Are you sure you want to delete this topping?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                  <form action="{% url 'delete' expense.id %}" method="POST">
+                                                  <form action="{% url 'delete_topping' topping.id %}" method="POST">
                                                     {% csrf_token %}
                                                     <input type="submit" class="btn btn-outline-danger" value="Delete">
                                                   </form>
@@ -100,7 +53,6 @@
                                               </div>
                                             </div>
                                           </div>
-                                          {% endcomment %}
                                         </td>
                                       </tr>
                                     {% endfor %}
@@ -111,7 +63,7 @@
                     </div>
                 </div>
                 {% else %}
-                <h5 class="alert alert-primary ms-4 me-4">No Toppings Logged</h5>
+                <h5 class="alert alert-primary ms-4 me-4">No Toppings Added</h5>
                 {% endif %}
             </div>
         </div>

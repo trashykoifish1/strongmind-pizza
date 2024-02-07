@@ -10,6 +10,9 @@ class Topping(models.Model):
 class Pizza(models.Model):
     name = models.CharField(max_length=100)
     toppings = models.ManyToManyField(Topping)
+    
+    def get_toppings(self):
+        return ", ".join([str(t) for t in self.toppings.all()])
 
     def __str__(self) -> str:
-        return f"{self.name}: {self.toppings}"
+        return f"{self.name} - Toppings: {self.get_toppings()}"

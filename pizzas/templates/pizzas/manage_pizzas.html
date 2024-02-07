@@ -1,0 +1,111 @@
+{% extends "pizzas/pizzas_base.html" %}
+{% block body %}
+        <h3 class="m-4">Masterpieces Created</h3>
+        <div class="row">
+            <div class="col-12">
+                {% if pizzas %}
+                <div class="card bg-light ms-4 me-4 mb-4">
+                    <div class="card-header">
+                        <i class="fa-solid fa-stroopwafel fa-lg"></i> Pizzas
+                    </div>
+                    <div class="card-body">
+                    <p class="card-text">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col" style="text-align: center;">Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pizza in pizzas %}
+                                    <tr id="pizza-{{ pizza.id }}" style="vertical-align: middle;">
+                                      <td>{{ pizza.name }}</td>
+                                      <td style="text-align: center;">
+                                        <button type="button" class="btn btn-outline-dark me-1" href="{% url 'view_pizza' pizza.id %}" data-bs-toggle="modal" data-bs-target="#view{{pizza.id}}">
+                                                        <i class="fa-solid fa-cubes-stacked fa-lg"></i> Toppings
+                                                      </button>
+                                        <a class="btn btn-outline-dark me-1" href="{% url 'update_pizza' pizza.id %}">
+                                            <i class="fa-solid fa-file-pen fa-lg"></i> Update
+                                          </a>
+                                        <button class="btn btn-outline-dark me-1" data-bs-toggle="modal" data-bs-target="#delete{{pizza.id}}">
+                                            <i class="fa-solid fa-trash-can fa-lg"></i> Delete
+                                        </button>
+
+                                        <!-- Modal - View Pizza -->
+                                                      <div class="modal" id="view{{pizza.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title">
+                                                                Pizza: {{ pizza.name }}
+                                                              </h5>
+                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true"></span>
+                                                              </button>
+                                                            </div>
+                                                            <div class="modal-body" style="text-align: left;">
+                                                                <strong>Toppings:</strong> 
+                                                              <ul>
+                                                                {% for topping in pizza.toppings.all %}
+                                                                <li>{{ topping.name }}</li>
+                                                                {% endfor %}
+                                                              </ul>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                        <!-- Modal - Delete Pizza -->
+                                        <div class="modal" id="delete{{pizza.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title">
+                                                    Deleting {{ pizza.name }}
+                                                  </h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"></span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body" style="text-align: left;">
+                                                    <strong>Toppings:</strong> 
+                                                              <ul>
+                                                                {% for topping in pizza.toppings.all %}
+                                                                <li>{{ topping.name }}</li>
+                                                                {% endfor %}
+                                                              </ul>
+                                                  <p style="text-align: center;"><strong>Are you sure you want to delete this pizza?</strong></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <form action="{% url 'delete_pizza' pizza.id %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                  </form>
+                                                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        {% comment %}
+                                        
+                                        
+                                          {% endcomment %}
+                                        </td>
+                                      </tr>
+                                    {% endfor %}
+                                </tbody>
+                              </table>
+                        </div>
+                    </p>
+                    </div>
+                </div>
+                {% else %}
+                <h5 class="alert alert-primary ms-4 me-4">No Pizzas Created</h5>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}

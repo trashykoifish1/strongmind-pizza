@@ -11,3 +11,23 @@ class ToppingForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class PizzaForm(forms.ModelForm):
+
+    class Meta:
+        model = Pizza
+        fields = ['name', 'toppings']
+        labels = {
+            'name': 'Pizza Name',
+            'toppings': 'Toppings',
+        }
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+    
+    toppings = forms.ModelMultipleChoiceField(
+        queryset = Topping.objects.all(),
+        widget = forms.SelectMultiple(attrs={
+            'class': 'form-control'
+        })
+    )
