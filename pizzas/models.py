@@ -8,7 +8,7 @@ class Topping(models.Model):
         return self.name
     
 class Pizza(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     toppings = models.ManyToManyField(Topping, blank=True)
     
     def get_toppings(self):

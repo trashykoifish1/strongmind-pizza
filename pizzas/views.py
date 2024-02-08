@@ -19,19 +19,25 @@ def is_dupplicate(type:str, name:str) -> bool:
             if name.lower() == topping.name.lower():
                 return True
     if type == "p": # Check pizza duplicates
-        all_pizzas = Pizza.objects.all().exclude(name=name)
+
+        all_pizzas = Pizza.objects.exclude(name=name)
         for pizza in all_pizzas:
             if name.lower() == pizza.name.lower():
                 return True
 
-def has_same_toppings(toppings) -> bool:
-    """
-    This function takes in a toppings QuerrySet, and check if it is a duplicate or not
-    """
-    all_pizzas = Pizza.objects.all()
-    for pizza in all_pizzas:
-        if set(pizza.toppings.all()) == set(toppings):
-            return True
+# def has_same_toppings(toppings, pizza = None) -> bool:
+#     """
+#     This function takes in a toppings QuerrySet, and check if it is a duplicate or not
+#     """
+#     print(pizza.name)
+#     all_pizzas = Pizza.objects.exclude(name=pizza.name)
+#     print(all_pizzas)
+#     for pizza in all_pizzas:
+#         print(pizza.name)
+#         if set(pizza.toppings.all()) == set(toppings):
+#             print(pizza.toppings.all())
+#             print(toppings)
+#             return True
 
 
 # Landing page
@@ -128,7 +134,7 @@ def add_pizza(request):
         if form.is_valid():
             new_name = form.cleaned_data['name']
             toppings = form.cleaned_data['toppings']
-            if is_dupplicate("p", new_name) or has_same_toppings(toppings):
+            if is_dupplicate("p", new_name):
                 return render(request, 'pizzas/add_pizza.html', {
                     'form': PizzaForm(),
                     'dup': True
@@ -154,7 +160,7 @@ def update_pizza(request, id):
         pizza = Pizza.objects.get(pk=id)
         form = PizzaForm(request.POST, instance=pizza)
         if form.is_valid():
-            if is_dupplicate(type="p", name=form.cleaned_data['name']) or has_same_toppings(toppings=form.cleaned_data['toppings']):
+            if is_dupplicate(type="p", name=form.cleaned_data['name']):
                 return render(request, 'pizzas/update_pizza.html', {
                     'form': form,
                     'dup': True,
