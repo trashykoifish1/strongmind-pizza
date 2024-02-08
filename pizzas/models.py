@@ -9,7 +9,7 @@ class Topping(models.Model):
     
 class Pizza(models.Model):
     name = models.CharField(max_length=100)
-    toppings = models.ManyToManyField(Topping)
+    toppings = models.ManyToManyField(Topping, blank=True)
     
     def get_toppings(self):
         return ", ".join([str(t) for t in self.toppings.all()])

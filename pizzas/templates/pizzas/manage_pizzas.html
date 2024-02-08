@@ -23,18 +23,37 @@
                                     <tr id="pizza-{{ pizza.id }}" style="vertical-align: middle;">
                                       <td>{{ pizza.name }}</td>
                                       <td style="text-align: center;">
-                                        <button type="button" class="btn btn-outline-dark me-1" href="{% url 'view_pizza' pizza.id %}" data-bs-toggle="modal" data-bs-target="#view{{pizza.id}}">
+                                        <button type="button" class="btn btn-outline-dark me-1 mb-1" href="{% url 'view_pizza' pizza.id %}" data-bs-toggle="modal" data-bs-target="#view{{pizza.id}}" data-bs-focus="false">
                                                         <i class="fa-solid fa-cubes-stacked fa-lg"></i> Toppings
                                                       </button>
-                                        <a class="btn btn-outline-dark me-1" href="{% url 'update_pizza' pizza.id %}">
+                                        <a class="btn btn-outline-dark me-1 mb-1" href="{% url 'update_pizza' pizza.id %}">
                                             <i class="fa-solid fa-file-pen fa-lg"></i> Update
                                           </a>
-                                        <button class="btn btn-outline-dark me-1" data-bs-toggle="modal" data-bs-target="#delete{{pizza.id}}">
+                                        <button class="btn btn-outline-dark me-1 mb-1" data-bs-toggle="modal" data-bs-target="#delete{{pizza.id}}">
                                             <i class="fa-solid fa-trash-can fa-lg"></i> Delete
                                         </button>
 
-                                        <!-- Modal - View Pizza -->
-                                                      <div class="modal" id="view{{pizza.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                        
+                                        </td>
+                                      </tr>
+                                    <!-- Modal - View Pizza -->
+                                                       
+                                    {% endfor %}
+                                </tbody>
+                              </table>
+                        </div>
+                    </p>
+                    </div>
+                </div>
+                {% else %}
+                <h5 class="alert alert-primary ms-4 me-4">No Pizzas Created</h5>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}
+{% block modal %}
+{% for pizza in pizzas %}
+<div class="modal fade" id="view{{pizza.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                           <div class="modal-content">
                                                             <div class="modal-header">
@@ -60,7 +79,7 @@
                                                         </div>
                                                       </div>
                                         <!-- Modal - Delete Pizza -->
-                                        <div class="modal" id="delete{{pizza.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                        <div class="modal fade" id="delete{{pizza.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
@@ -89,23 +108,6 @@
                                                 </div>
                                               </div>
                                             </div>
-                                          </div>
-                                        {% comment %}
-                                        
-                                        
-                                          {% endcomment %}
-                                        </td>
-                                      </tr>
-                                    {% endfor %}
-                                </tbody>
-                              </table>
-                        </div>
-                    </p>
-                    </div>
-                </div>
-                {% else %}
-                <h5 class="alert alert-primary ms-4 me-4">No Pizzas Created</h5>
-                {% endif %}
-            </div>
-        </div>
+                                          </div> 
+{% endfor %}
 {% endblock %}
