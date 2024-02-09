@@ -36,46 +36,31 @@ Python 3.11.0
 > Because the application uses `Django 5.0.1` so `Python >= 3.10` is reccommended
 
 - Navigate to the project folder
-- Create your own virtual environment or use the provided one
+- Create your own virtual environment or use the provided one (Windows only)
 
 **Windows:**
 
-Creating virtual environment
+Creating and activating virtual environment
 
 ```shell
 $ python -m venv env
-```
-
-Activating virtual environment
-
-```shell
 $ .\env\Scripts\activate
 ```
 
 **Mac/Linux:**
 
-Creating virtual environment
+Creating and activating virtual environment
 
 ```bash
 $ python -m venv env
-```
-
-Activating vritual environment
-
-```bash
 $ source env/bin/activate
 ```
 
-- Ensure that `pip` is installed if not refer to [pip installation guide](https://pip.pypa.io/en/stable/installation/)
+- Ensure that `pip` is installed if not refer to [pip installation guide](https://pip.pypa.io/en/stable/installation/) and install the dependencies
 
 ```shell
 $ pip --version
 pip 22.3 from FILEPATH (python 3.11)
-```
-
-- Install the required dependencies
-
-```shell
 $ pip install -r requirements.txt
 ```
 
