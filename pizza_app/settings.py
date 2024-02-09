@@ -31,7 +31,7 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-8@ty0%h5kn-31@rpqs545%_quhzpsbd6c5a)_521^loly(x8)^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True # If DEDUG == True -> runs on SQLite, else -> runs on PostgreSQL
 
 ALLOWED_HOSTS = ["*"]
 
