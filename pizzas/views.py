@@ -49,7 +49,7 @@ def index(request):
 
 def manage_toppings(request):
     return render(request, 'pizzas/toppings.html', {
-        'toppings': Topping.objects.all()
+        'toppings': Topping.objects.all().order_by('name')
     })
 
 def add_topping(request):
@@ -114,7 +114,7 @@ def delete_topping(request, id):
 
 def manage_pizzas(request):
     return render(request, 'pizzas/manage_pizzas.html', {
-        'pizzas': Pizza.objects.all()
+        'pizzas': Pizza.objects.all().order_by('name')
     })
 
 def view_pizza(request, id):

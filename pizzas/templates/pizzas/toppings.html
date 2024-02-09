@@ -5,8 +5,15 @@
             <div class="col-12">
                 {% if toppings %}
                 <div class="card bg-light ms-4 me-4 mb-4">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <div>
                         <i class="fa-solid fa-cheese fa-lg"></i> Toppings
+                        </div>
+                        <div>
+                          <a class="nav-link" href="{% url 'add_topping' %}">
+                            <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-plus fa-lg"></i> Add</button>
+                          </a>
+                        </div>
                     </div>
                     <div class="card-body">
                     <p class="card-text">
@@ -23,13 +30,14 @@
                                     <tr id="topping-{{ topping.id }}" style="vertical-align: middle;">
                                       <td>{{ topping.name }}</td>
                                       <td style="text-align: center;">
-                                        <a class="btn btn-outline-dark me-1 mb-1" href="{% url 'update_topping' topping.id %}">
+                                        <div class="d-grid gap-2 d-md-block">
+                                        <a class="btn btn-outline-dark me-1 mb-1 mb-1" href="{% url 'update_topping' topping.id %}">
                                             <i class="fa-solid fa-file-pen fa-lg"></i> Update
                                           </a>
                                         <button class="btn btn-outline-dark me-1 mb-1" data-bs-toggle="modal" data-bs-target="#delete{{topping.id}}">
                                             <i class="fa-solid fa-trash-can fa-lg"></i> Delete
-                                        </button>
-                                        
+                                        </div>
+                                        </span>
                                         </td>
                                       </tr>
                                     {% endfor %}

@@ -5,8 +5,15 @@
             <div class="col-12">
                 {% if pizzas %}
                 <div class="card bg-light ms-4 me-4 mb-4">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <div>
                         <i class="fa-solid fa-stroopwafel fa-lg"></i> Pizzas
+                        </div>
+                        <div>
+                          <a class="nav-link" href="{% url 'add_pizza' %}">
+                            <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-plus fa-lg"></i> Add</button>
+                          </a>
+                        </div>
                     </div>
                     <div class="card-body">
                     <p class="card-text">
@@ -23,6 +30,7 @@
                                     <tr id="pizza-{{ pizza.id }}" style="vertical-align: middle;">
                                       <td>{{ pizza.name }}</td>
                                       <td style="text-align: center;">
+                                        <div class="d-grid gap-2 d-md-block">
                                         <button type="button" class="btn btn-outline-dark me-1 mb-1" href="{% url 'view_pizza' pizza.id %}" data-bs-toggle="modal" data-bs-target="#view{{pizza.id}}" data-bs-focus="false">
                                                         <i class="fa-solid fa-cubes-stacked fa-lg"></i> Toppings
                                                       </button>
@@ -33,7 +41,7 @@
                                             <i class="fa-solid fa-trash-can fa-lg"></i> Delete
                                         </button>
 
-                                        
+                                        </div>
                                         </td>
                                       </tr>
                                     <!-- Modal - View Pizza -->

@@ -17,7 +17,10 @@ https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/lux/bootstrap.min.css
     />
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav
+      class="navbar sticky-top navbar-expand-lg bg-primary"
+      data-bs-theme="dark"
+    >
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'manage_toppings' %}"
           ><i class="fa-solid fa-cubes-stacked fa-lg"></i> Toppings</a
@@ -34,19 +37,7 @@ https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/lux/bootstrap.min.css
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor03">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'manage_toppings' %}">
-                <i class="fa-solid fa-clipboard-list fa-lg"></i> All Toppings
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add_topping' %}">
-                <i class="fa-solid fa-plus fa-lg"></i> Add Topping
-              </a>
-            </li>
-          </ul>
+          <ul class="navbar-nav me-auto"></ul>
 
           <a href="{% url 'manage_pizzas' %}"
             ><button class="btn btn-outline-light my-2 my-sm-0 me-2">
