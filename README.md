@@ -86,3 +86,24 @@ Quit the server with CTRL-BREAK.
 - Find the `DEBUG` variable and switch between `True` or `False` accordingly
 
 ## Testing
+
+> The test cases are simple tests to ensure that the model and views are returning correctly
+
+With the `Python` virtual environment:
+
+```shell
+$ python manage.py test
+Found 19 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+...................
+----------------------------------------------------------------------
+Ran 19 tests in 0.115s
+
+OK
+```
+
+---
+
+> [!NOTE]
+> Feel free to reach out to me khoitr1508@gmail.com if anything does not work accordingly. Thank you for taking the time to review my application!
